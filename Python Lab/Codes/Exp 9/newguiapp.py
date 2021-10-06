@@ -1,0 +1,42 @@
+from tkinter import *
+from tkinter import ttk
+window = Tk()
+window.title("Simple GUI Form")
+window.configure(bg='light cyan')
+window.geometry('400x400')
+Label(window,text="Enter Details",bg="light cyan",font=("Helvetica 15 bold"),fg="RoyalBlue4").pack()
+frame = Frame(window, bg="light cyan")
+frame.pack(pady=10)
+a = Label(frame ,text = "First Name",bg="light cyan",width=30, anchor='w').grid(row = 0,column = 0)
+a1 = Entry(frame)
+a1.grid(row = 0,column = 1)
+b = Label(frame ,text = "Last Name",width=30, anchor='w',bg="light cyan").grid(row = 1,column = 0)
+b1 = Entry(frame)
+b1.grid(row = 1,column = 1)
+c = Label(frame ,text = "Select City",width=30, anchor='w',bg="light cyan").grid(row = 2,column = 0)
+c1 = ttk.Combobox(frame,width=17)
+c1['values']=('Mumbai','Chennai','Delhi','Bangalore','Hyderabad','Surat','Bhopal','Kolkata','Allahabad')
+c1.grid(row = 2,column = 1)
+d = Label(frame ,text = "Gender",width=30, anchor='w',bg="light cyan").grid(row = 3,column = 0)
+frame1 = Frame(frame,bg="light cyan")
+frame1.grid(row=3,column=1)
+var=StringVar()
+dr1=Radiobutton(frame1,text='Male',variable = var,value='Male', tristatevalue="x",bg="light cyan")
+dr1.pack(side=LEFT)
+dr2=Radiobutton(frame1,text='Female',variable = var,value='Female', tristatevalue="x",bg="light cyan")
+dr2.pack(side=LEFT)
+e = Label(frame ,text = "Age",width=30, anchor='w',bg="light cyan").grid(row = 4,column = 0)
+e1 = Spinbox(frame, from_=00, to=130, width=19)
+e1.grid(row=4,column=1)
+Label(window,text="Entered Records",font=("Helvetica 15 bold"),bg="light cyan",fg="RoyalBlue4").pack()
+listbox = Listbox(window, height=10, width=70)
+listbox.pack(pady=10,padx=10)
+i=0
+def save():
+    global i
+    i+=1
+    str1 = str(i) +".  "+ a1.get()+" "+b1.get()+",  "+str(c1.get())+",  "+var.get()+",  "+e1.get()
+    listbox.insert(END,str1)
+
+btn = Button(frame ,text="Submit", command = save, width=30, height=2, bg="PaleTurquoise2").grid(row=5,columnspan=2)
+window.mainloop()
